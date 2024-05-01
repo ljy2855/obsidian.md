@@ -36,8 +36,7 @@ jobs:
 
       - name: Rename README.html to index.html
         run: |
-          mkdir ./page
-          cp readme.html ./page/index.html
+          cp ./page/readme.html ./page/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
