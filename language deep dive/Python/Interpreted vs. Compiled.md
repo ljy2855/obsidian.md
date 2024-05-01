@@ -1,4 +1,8 @@
-
+---
+aliases: 
+tags:
+  - Python
+---
 
 ### Interpreter
 
