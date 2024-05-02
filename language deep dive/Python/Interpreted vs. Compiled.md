@@ -16,8 +16,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-python을 실행하면 한줄씩 코드를 입력하고 이에 대하
+python을 실행하면 한줄씩 코드를 입력하고 해당 코드를 실행한 결과가 출력된다.
 
+
+### Code Run
 
 ```python
 i = 3
