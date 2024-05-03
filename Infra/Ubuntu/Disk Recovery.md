@@ -26,9 +26,11 @@ mount 된 disk가 하드웨어, 소프트웨어 에러로 인해 block이 손상
 - **pass 4**: 모든 블록의 참조 횟수를 검사하여 블록이 올바르게 연결되어 있고 중복 참조되지 않았는지 확인
 - **pass 5**: 비트맵과 실제 블록의 사용 상태를 비교 검사하여 사용되지 않는 블록이나 오류 체크
 
+
 ```bash
 sudo e2fsck /dev/sdX #disk device file
 ```
+
 
 
 > [!Cauption] 만약 superblock이 손상되면 어떻게 할까?
