@@ -1,7 +1,7 @@
 ---
-aliases: 
 tags:
   - Python
+Done:
 ---
 
 ### Interpreter
