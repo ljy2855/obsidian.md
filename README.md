@@ -6,6 +6,11 @@ https://ljy2855.github.io/obsidian.md/
 
 
 ```dataview
-TABLE file.mtime as Modified, file.folder AS "분류" from "/"
-SORT file.path desc
+TABLE file.mtime as Modified, file.folder AS "분류", (Done ? "Done" : "Writing") as Done SORT file.path desc
+```
+
+
+```dataviewjs
+dv.table(["Note","Modified", "분류", "Done"], dv.pages("") .map(page => [ 
+page.file.link, page.file.mtime, page.file.folder, page.Done ? "✔️" : "❌" ]) );
 ```
