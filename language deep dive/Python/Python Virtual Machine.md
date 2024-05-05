@@ -47,4 +47,5 @@ print(i)
 
 ### PVM (Python Virtual Machine)
 
+앞선 **Script Run**을 수행하는 프로그램이 PVM이다. 
 
