@@ -47,5 +47,24 @@ print(i)
 
 ### PVM (Python Virtual Machine)
 
-앞선 **Script Run**을 수행하는 프로그램이 PVM이다. 
+앞선 **Script Run**을 수행하는 프로그램이 PVM이다. 주로 C로 작성된 `CPython이` 사용되고 이외에 `PyPy`, `Jython` 등 다양한 PVM이 존재한다.
+
+#### 메모리 관리
+##### Stack
+C와 마찬가지로 함수 stack frame을 저장하는데 여기엔 local variable, parameter, return address를 저장한다. 
+##### Heap
+이외에 리스트와 같은 Object들은 heap영역에 저장하게 되는데, 할당된 Object들은 `del` 또는 `garbage collector` 에서 reference count가 0이되면 자동으로 메모리 해제를 진행한다.
+추가적으로 instance, global variable도 heap영역에 저장된다
+##### trade off
+파이썬은 PVM이 메모리 관리를 수행하기에 간단하게 코드를 작성할 수 있다. 다만 GC를 사용함으로써 서버 프로그램 구동 시, 문제가 발생할 수 있다.
+
+> [!NOTE] 서버 프로그램에서 문제
+> 
+> **실시간 처리 제한**
+> GC를 작동하는 순간(순환 참조 확인, ref count update)은 PVM이 결정하기에, 웹서버에서 reqeust를 처리할 때 성능 문제가 발생할 수 있다. (response time 증가)
+> 오랜시간 프로세스 구동 시 GC가 관리할 메모리 블럭들이 늘어나고 그 만큼 연산시간이 증가한다.
+> 
+
+#### 
+
 
