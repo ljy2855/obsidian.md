@@ -1,6 +1,6 @@
 ### **노트 리스트**
 ```dataview
-TABLE file.mtime as Modified, file.folder AS "Category", Done  from "/"
+TABLE  file.folder AS "Category", file.mtime as Modified, Done  from "/"
 SORT file.folder
 ```
 
