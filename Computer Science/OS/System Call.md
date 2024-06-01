@@ -85,11 +85,60 @@ void exception_init(void)
 
 void syscall_init(void)
 {
-  intr_register_int(0x30, 3, INTR_ON, syscall_handler, "syscall");
+   intr_register_int(0x30, 3, INTR_ON, syscall_handler, "syscall");
 }
 
 ```
 
 커널 시작시에 위와 같은 interrupt과 handler가 등록된다. 이후 exception과 같은 예외상황에서 커널의 작업들이 수행되도록 한다. ex) page fault
 
-user에서 `int $0x30` 을 호출하면 해당 sysca
+user에서 `int $0x30` 을 호출하면 커널로 [[Context Switching]] 이 발생하고 syscall_handler가 호출된다.
+
+#### Check User Pointer
+system call에서는 주소값을 파라미터로 넘기는 경우가 있다. 해당 경우 kernel에서는 user에서 정상적인 값을 넘겼는지 확인해야한다.
+
+유저 메모리 영역인지, read only segment에 write 시도했는지, valid한 page에 접근했는지 등등 확인하게 된다.
+
+![[Pasted image 20240601170316.png]]
+
+> [!NOTE] 왜  커널에서 확인해야할까?
+> 각 process는 메모리를 모두 쓸 수 있음을 가정하고 각각의 프로세스들의 메모리 영역이 격리되어 있다. 때문에 프로그래머의 실수로 잘못된 주소값이 넘어가 다른 프로세스의 영역을 침범하거나 커널영역을 접근할 경우가 있다.
+> kernel은 유저가 사용하는 메모리 영역(page)을 page table에 저장하고 이는 커널 메모리내 PCB에 저장하기에 커널에서 확인해주어야 한다.
+
+#### Syscall Handler
+handler가 호출되면 앞선 number를 확인하여 유저에서 요청한 작업을 처리해준다.
+
+1. **프로세스 관리**:
+    - 프로세스 생성 및 종료
+    - 프로세스간 통신 (IPC)
+    - 프로세스 스케줄링 및 관리
+2. **파일 관리**:
+    - 파일 생성, 삭제, 열기, 닫기
+    - 파일 읽기 및 쓰기
+    - 파일 속성 변경
+3. **장치 관리**:
+    - 하드웨어 장치 접근
+    - 장치 드라이버와의 통신
+    - 장치의 상태 관리
+4. **메모리 관리**:
+    - 메모리 할당 및 해제
+    - 메모리 보호 및 접근 제어
+    - 주소 변환
+5. **입출력 관리**:
+    - 다양한 입출력 장치를 통한 데이터 전송
+    - 버퍼 관리, 스풀링
+
+
+작업이 끝나면, eax 레지스터 return값을 저장하여 유저에 전달해준다.
+
+### Application
+prod 환경에서 system call이 호출되는 경우는 아래와 같다.
+
+- 네트워크 통신
+- 파일 입출력
+- process, thread 관리
+#### Network 
+보통의 웹서버는 [[HTTP]] 프로토콜을 활용하여 데이터를 송수신한다. 소켓관리 및 데이터 read, write를 시스템 콜을 통해서 진행한다.
+
+#### IO
+로그를 stdout으로 출력하거나 file로 저장할때, `write` 을 사용하게 된다. 때문에 너무 많은 로그 저장시에 
