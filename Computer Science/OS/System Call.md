@@ -137,8 +137,17 @@ prod 환경에서 system call이 호출되는 경우는 아래와 같다.
 - 네트워크 통신
 - 파일 입출력
 - process, thread 관리
+
+system call은 일반적인 instruction보다 커널로의 context switching 때문에 cost가 높다. 때문에 성능이 중요한 상황에서는 system call을 최대한 줄이는 게 좋다. 
 #### Network 
 보통의 웹서버는 [[HTTP]] 프로토콜을 활용하여 데이터를 송수신한다. 소켓관리 및 데이터 read, write를 시스템 콜을 통해서 진행한다.
 
 #### IO
-로그를 stdout으로 출력하거나 file로 저장할때, `write` 을 사용하게 된다. 때문에 너무 많은 로그 저장시에 
+로그를 stdout으로 출력하거나 file로 저장할때, `write` 을 사용하게 된다. 때문에 너무 많은 로그 저장시에 io blcok되어 성능이 떨어질 수 있다.
+
+DB의 경우 보통 웹서버와 분리되어 있고 network를 통해 웹서버와 통신하기에 Network, IO 두개의 과정에서 많은 System call이 사용된다.
+
+웹서버 내부에서 DB에서 데이터를 조회, 수정 시에 해당 요청이 완료되까지 기다리기에 block되는 시간이 길어진다.
+#### Manage Process, Thread
+다수의 client의 요청을 처리할때, 병렬적으로 task를 처리하기 위해 웹서버들은 대부분 multi-thread(node) or multi-process(apache) 환경으로 구현되어 있다.
+client의 요청이 올 때, thread, process pool을 미리 생성하여 처리할 수 있도록 한다. 
