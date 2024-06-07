@@ -52,7 +52,7 @@ print(i)
 ##### Stack
 C와 마찬가지로 함수 stack frame을 저장하는데 여기엔 local variable, parameter, return address를 저장한다. 
 ##### Heap
-이외에 리스트와 같은 Object들은 heap영역에 저장하게 되는데, 할당된 Object들은 `del` 또는 `garbage collector` 에서 reference count가 0이되면 자동으로 메모리 해제를 진행한다.
+이외에 리스트와 같은 Object들은 heap영역에 저장하게 되는데, 할당된 Object들은 `del` 또는 [[Garbage Collector]] 에서 reference count가 0이되면 자동으로 메모리 해제를 진행한다.
 추가적으로 instance, global variable도 heap영역에 저장된다
 
 ![[Pasted image 20240505191143.png]]
