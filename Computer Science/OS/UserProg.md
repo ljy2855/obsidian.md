@@ -20,4 +20,6 @@ ELF(Executable and Linkable Format)는 주로 유닉스 및 유닉스 계열 운
 
 pintos상에서 실행되는 ELF는 실행파일이라고 가정하고 load시에 해당 정보를 읽어와 확인을 진행한다.
 
-### Load
+### Run
+
+
