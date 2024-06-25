@@ -68,6 +68,8 @@ read switch input ^DvwfqRxE
 
 update device output ^V2r2SnFZ
 
+click ^AVMTkYLh
+
 %%
 # Drawing
 ```json
@@ -269,8 +271,8 @@ update device output ^V2r2SnFZ
 				"type": 3
 			},
 			"seed": 608904088,
-			"version": 439,
-			"versionNonce": 1857804440,
+			"version": 440,
+			"versionNonce": 1867279848,
 			"isDeleted": false,
 			"boundElements": [
 				{
@@ -284,9 +286,13 @@ update device output ^V2r2SnFZ
 				{
 					"id": "XykzkTQEm2oXelUDrHIcl",
 					"type": "arrow"
+				},
+				{
+					"id": "c5_VwSSXqqFS7oT-42Hm9",
+					"type": "arrow"
 				}
 			],
-			"updated": 1719246289576,
+			"updated": 1719288814431,
 			"link": null,
 			"locked": false
 		},
@@ -366,8 +372,8 @@ update device output ^V2r2SnFZ
 		},
 		{
 			"type": "rectangle",
-			"version": 592,
-			"versionNonce": 252723176,
+			"version": 593,
+			"versionNonce": 187175912,
 			"index": "a7",
 			"isDeleted": false,
 			"id": "DKeBABs_meyUfOJO9UGwL",
@@ -401,9 +407,13 @@ update device output ^V2r2SnFZ
 				{
 					"id": "JW2cJmkd3Cy3vGtbSz47y",
 					"type": "arrow"
+				},
+				{
+					"id": "c5_VwSSXqqFS7oT-42Hm9",
+					"type": "arrow"
 				}
 			],
-			"updated": 1719246283413,
+			"updated": 1719288814431,
 			"link": null,
 			"locked": false
 		},
@@ -2935,6 +2945,99 @@ update device output ^V2r2SnFZ
 			"locked": false
 		},
 		{
+			"id": "c5_VwSSXqqFS7oT-42Hm9",
+			"type": "arrow",
+			"x": -359.35283214391904,
+			"y": 326.63856480938523,
+			"width": 1.6666666666666288,
+			"height": 185,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "solid",
+			"strokeWidth": 2,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"index": "b1M",
+			"roundness": {
+				"type": 2
+			},
+			"seed": 562920,
+			"version": 64,
+			"versionNonce": 528870296,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1719288814435,
+			"link": null,
+			"locked": false,
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					1.6666666666666288,
+					185
+				]
+			],
+			"lastCommittedPoint": [
+				1.6666666666666288,
+				185
+			],
+			"startBinding": {
+				"elementId": "9dsAHJ6da9LYs0hfMxbzM",
+				"focus": 0.05543399005106984,
+				"gap": 2.1340094583588325
+			},
+			"endBinding": {
+				"elementId": "DKeBABs_meyUfOJO9UGwL",
+				"focus": -0.04800696165821838,
+				"gap": 8.402698340896563
+			},
+			"startArrowhead": null,
+			"endArrowhead": "arrow"
+		},
+		{
+			"id": "AVMTkYLh",
+			"type": "text",
+			"x": -332.65361339391904,
+			"y": 404.9718981427186,
+			"width": 55.24397277832031,
+			"height": 35,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "solid",
+			"strokeWidth": 2,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"index": "b1N",
+			"roundness": null,
+			"seed": 721544600,
+			"version": 9,
+			"versionNonce": 1398700008,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1719288817424,
+			"link": null,
+			"locked": false,
+			"text": "click",
+			"rawText": "click",
+			"fontSize": 28,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "click",
+			"lineHeight": 1.25
+		},
+		{
 			"id": "KPtCr942",
 			"type": "text",
 			"x": -353.11608945040786,
@@ -3699,10 +3802,10 @@ update device output ^V2r2SnFZ
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 1374.6013486169297,
-		"scrollY": -580.8268784843062,
+		"scrollX": 1352.653613393919,
+		"scrollY": 406.87706019061466,
 		"zoom": {
-			"value": 0.6421509230136871
+			"value": 0.6000000000000001
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,
