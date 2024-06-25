@@ -512,7 +512,20 @@ public class JniDriver {
 
 }
 ```
-FPGA device를 제어하기 위하여 JNI를 통해서 디바이스 드라이버를 제어한다. 우선 클래스를 선언하여 사용할 JNI method들을 선언한다. 
+FPGA device를 제어하기 위하여 JNI를 통해서 디바이스 드라이버를 제어한다. 우선 클래스를 선언하여 사용할 JNI method들을 선언한다.
+
+사용할 FPGA 디바이스 별 기능은 아래와 같다.
+* LCD : 현재 총 자산 및 보유 잔고 출력
+* DOT : 주식 매매 모드 출력 (Buy, Sell)
+* FND : 개별 주식의 보유량 출력
+* LED : 주식 가격 변동시 1초간 점등
+* MOTOR : 주식 거래시에 1초간 회전
+* RESET, HOME button : 각각 주식 거래 버튼, 거래 모드 변경
+
+![[Pasted image 20240625135348.png]]
+
+해당 Jni function을 통해 진행할 io 작업에 대한 method들을 추가로 구현한다.
+
 
 **Complie**
 ```sh
@@ -685,5 +698,251 @@ JNIEXPORT jint JNICALL Java_com_example_FinalProj_JniDriver_readKey(JNIEnv *env,
     result = readkey();
     LOGV("Read Key: %d", result);
     return result;
+}
+```
+- printLCD, printDOT, printFND : 인자로 넘겨온 String 객체를 c로 변환하기 위해 `GetStringUTFChars` 사용 후 release
+- runMotor, readKey의 인자는 변환없이 jint 타입 그대로 사용후 return
+
+**printLCD**
+```C
+void print_to_lcd(const char *text)
+{
+    int dev;
+    char buffer[MAX_BUFF];
+    int length;
+
+    // 디바이스 파일 열기
+    dev = open(FPGA_TEXT_LCD_DEVICE, O_WRONLY);
+    if (dev < 0)
+    {
+        LOGV("Failed to open the LCD device");
+        return;
+    }
+
+    // 문자열을 LCD 버퍼 크기에 맞게 복사
+    memset(buffer, ' ', sizeof(buffer));
+    length = strlen(text);
+    if (length > MAX_BUFF)
+    {
+        length = MAX_BUFF;
+    }
+    strncpy(buffer, text, length);
+
+    // 디바이스로 문자열 쓰기
+    write(dev, buffer, MAX_BUFF);
+    LOGV("Finish write to LCD");
+    // 디바이스 파일 닫기
+    close(dev);
+}
+```
+
+- text를 인자로 받아 디바이스 드라이버를 열고 32 byte의 크기에 맞춰 해당 text를 출력
+
+**printDOT**
+```C
+unsigned char fpga_alphabet_patterns[2][10] = {
+    {// 'S'
+     0x3e, 0x7f, 0x60, 0x60, 0x3e, 0x7f, 0x03, 0x03, 0x7f, 0x7e},
+    {// 'B'
+     0x7e, 0x7f, 0x63, 0x63, 0x7f, 0x7f, 0x63, 0x63, 0x7f, 0x7e}};
+
+unsigned char fpga_set_blank[10] = {
+    // memset(array,0x00,sizeof(array));
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    
+void print_dot(const char *text)
+{
+    int dev, i;
+    size_t str_size;
+
+    dev = open(FPGA_DOT_DEVICE, O_WRONLY);
+    if (dev < 0)
+    {
+        LOGV("Device open error: %s\n", FPGA_DOT_DEVICE);
+        return;
+    }
+
+    if (strcmp(text, "S") == 0)
+    {
+        str_size = sizeof(fpga_alphabet_patterns[0]);
+        write(dev, fpga_alphabet_patterns[0], str_size);
+    }
+    else if (strcmp(text, "B") == 0)
+    {
+        str_size = sizeof(fpga_alphabet_patterns[1]);
+        write(dev, fpga_alphabet_patterns[1], str_size);
+    }
+    else
+    {
+        str_size = sizeof(fpga_set_blank);
+        write(dev, fpga_set_blank, str_size);
+    }
+
+    close(dev);
+}
+```
+- 주식의 매매 모드 'S', 'B'를 출력하기 위한 패턴 저장
+- 인자로 넘겨온 text를 확인후 해당 패턴 출력 아니라면 출력 초기화
+
+**printFND**
+```C
+void print_fnd(const char *text)
+{
+    int dev, i;
+    unsigned char data[MAX_DIGIT] = {0};
+    int str_size = strlen(text);
+
+    if (str_size > MAX_DIGIT)
+    {
+        str_size = MAX_DIGIT;
+        LOGV("Warning! 4 Digit number only!\n");
+    }
+
+    for (i = 0; i < str_size; i++)
+    {
+        if (text[i] >= '0' && text[i] <= '9')
+            data[3 - i] = text[i] - '0';
+    }
+
+    dev = open(FND_DEVICE, O_RDWR);
+    if (dev < 0)
+    {
+        LOGV("Device open error : %s\n", FND_DEVICE);
+        return;
+    }
+
+    if (write(dev, &data, 4) < 0)
+    {
+        LOGV("Write Error!\n");
+    }
+
+    close(dev);
+}
+```
+- 인자로 받아온 문자열의 길이가 4이하인지 확인
+- FND에 출력 가능한 형태로 변환
+- 디바이스에 write후 디바이스 파일 close
+
+**printLED**
+```C
+void print_led(unsigned char data)
+{
+    int dev;
+
+    if (data < 0 || data > 255)
+    {
+        LOGV("Invalid range! Value must be between 0 and 255.\n");
+        return;
+    }
+
+    dev = open(LED_DEVICE, O_RDWR);
+    if (dev < 0)
+    {
+        LOGV("Device open error : %s\n", LED_DEVICE);
+        return;
+    }
+
+    if (write(dev, &data, 1) < 0)
+    {
+        LOGV("Write Error!\n");
+    }
+
+    close(dev);
+}
+```
+- 넘겨받은 인자의 값 확인 0 - 255
+- 디바이스 파일 오픈 후 해당 데이터 write 후 close
+
+**runMotor**
+```C
+void run_motor(int action, int direction, int speed, int duration)
+{
+    int dev;
+    unsigned char motor_state[3];
+
+    dev = open(FPGA_STEP_MOTOR_DEVICE, O_WRONLY);
+    if (dev < 0)
+    {
+        perror("Failed to open the motor device");
+        return;
+    }
+
+    motor_state[0] = (unsigned char)action;
+    motor_state[1] = (unsigned char)direction;
+    motor_state[2] = (unsigned char)speed;
+
+    write(dev, motor_state, 3);
+    sleep(duration);
+
+    motor_state[0] = 0;
+    motor_state[1] = (unsigned char)direction;
+    motor_state[2] = (unsigned char)speed;
+    write(dev, motor_state, 3);
+    close(dev);
+}
+```
+- 인자를 각각 받아와 디바이스에 write
+- 넘겨받은 duration만큼 sleep 이후 정지상태로 만들고 file close
+
+readKey
+```C
+#define DEVICE_NAME "/dev/new_driver"
+int readkey()
+{
+    int dev, key;
+    dev = open(DEVICE_NAME, O_RDONLY);
+    if (dev < 0)
+    {
+        perror("Failed to open the motor device");
+        return;
+    }
+    key = read(dev, "", 1);
+    close(dev);
+    return key;
+}
+```
+- 구현한 device module file open
+- read를 호출하여 입력받은 key 저장
+- read가 끝나면 device file close후 key 반환
+
+#### device driver
+여러개의 입력을 감지하고 read 시스템콜을 통해 반환하는 driver module을 작성한다. 입력을 받을 스위치는 RESET과 HOME으로 각각 ioremap, interrupt을 통해 받아오게 한다.
+
+![[Pasted image 20240625141258.png]]
+
+```C
+static int __init inter_init(void) {
+	int result;
+    // init intr
+	if((result = inter_register_cdev()) < 0 )
+		return result;
+    home_flag = false;
+
+    init_timer(&(my_timer));
+    my_timer.expires = jiffies +(HZ / 10);
+    my_timer.function = timer_callback;
+    add_timer(&my_timer);
+
+    // init device
+    fpga_rst_addr = ioremap(FPGA_RST_BASE_ADDR, 0x1);
+
+	printk(KERN_ALERT "Init Module Success \n");
+	printk(KERN_ALERT "Device : /dev/new_driver, Major Num : 242 \n");
+	return 0;
+}
+static int inter_open(struct inode *minode, struct file *mfile){
+	int ret;
+	int irq;
+
+	printk(KERN_ALERT "Open Module\n");
+
+	// HOME
+	gpio_direction_input(IMX_GPIO_NR(1,11));
+	irq = gpio_to_irq(IMX_GPIO_NR(1,11));
+	printk(KERN_ALERT "IRQ Number : %d\n",irq);
+	ret=request_irq(irq, inter_handler, IRQF_TRIGGER_FALLING, "home", 0);
+
+    
+	return 0;
 }
 ```
