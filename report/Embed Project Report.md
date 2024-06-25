@@ -946,3 +946,127 @@ static int inter_open(struct inode *minode, struct file *mfile){
 	return 0;
 }
 ```
+
+드라이버 init 시에 0.1초 주기의 타이머를 세팅한다. 해당 타이머는 reset버튼이 눌러졌나 확인을 진행한다. 리셋버튼의 상태를 확인하기 위해 ioremap을 통해 물리 메모리를 매핑하고 주소를 저장한다. 
+드라이버 open시에는 request_irq를 통해 isr에 home버튼에 해당하는 gpio핀에 해당하는 interrupt handler를 등록한다.
+
+```C
+static int inter_read(struct file *filp, const char *buf, size_t count, loff_t *f_pos){
+    
+    interruptible_sleep_on(&wq);
+    if(home_flag){
+        home_flag = false;
+        return HOME;
+    }
+    return RESET;
+    
+}
+```
+read 호출시에 일단 프로세스를 wait queue에 삽입후 interrupt 또는 timer에서 깨울 수 있도록 sleep을 진행한다. 해당 프로세스는 block된 상태로 cpu 자원을 독점하지 않게 한다.
+
+
+```C
+irqreturn_t inter_handler(int irq, void* dev_id, struct pt_regs* reg) {
+	printk(KERN_ALERT "Interrupt: Home button pressed.\n");
+    home_flag = 1;
+    __wake_up(&wq, 1, 1, NULL);   // Wake up processes in the wait queue
+	return IRQ_HANDLED;
+}
+
+
+void timer_callback(struct timer_list *data) {
+    printk(KERN_INFO "Timer Callback function called.\n");
+    if(inw((unsigned int)fpga_rst_addr) == 0){
+        printk(KERN_INFO "Reset button pressed.\n");
+        __wake_up(&wq, 1, 1, NULL); 
+    
+    }
+    my_timer.expires = jiffies +(HZ / 10);
+    my_timer.function = timer_callback;
+    add_timer(&my_timer);
+}
+```
+interrupt handler는 home버튼 press시에 프로세스의 control flow를 빼앗고 해당 interrupt handler를 호출하여 sleep중인 프로세스를 깨우게 된다.
+timer handler는 커널상에서 드라이버 insmod부터 주기적으로 0.1초마다 돌며 reset버튼의 상태를 확인하고 wait queue에서 sleep 중인 process를 깨우게 된다.
+해당 두개의 handler는 독립적으로 각자의 상태에 영향을 주지 않고 read중인 프로세스의 깨우고 입력한 key를 전달 할 수 있도록 한다.
+
+
+### 빌드 및 소스코드 
+#### 프로젝트 구조
+```sh
+❯ tree
+.
+├── AndroidManifest.xml
+├── FinalProj.apk
+├── README.md
+├── compile_jni.sh # complie java src to jni c header script
+├── driver
+│   ├── module
+│   │   ├── Makefile
+│   │   ├── new_driver.c
+│   │   └── new_driver.ko
+│   ├── objs
+│   │   ├── fpga_buzzer_driver.ko
+│   │   ├── fpga_dip_switch_driver.ko
+│   │   ├── fpga_dot_driver.ko
+│   │   ├── fpga_fnd_driver.ko
+│   │   ├── fpga_insmod.sh
+│   │   ├── fpga_led_driver.ko
+│   │   ├── fpga_push_switch_driver.ko
+│   │   ├── fpga_step_motor_driver.ko
+│   │   ├── fpga_text_lcd_driver.ko
+│   │   └── new_driver.ko
+│   └── push.sh # driver push script
+├── ic_launcher-web.png
+├── jni
+│   ├── Android.mk
+│   ├── com_example_FinalProj_JniDriver.h
+│   ├── input_driver.c
+│   ├── input_driver.h
+│   ├── jni_driver.c
+│   ├── output_driver.c
+│   └── output_driver.h
+├── libs
+│   └── android-support-v4.jar
+├── lint.xml
+├── proguard-project.txt
+├── project.properties
+├── res
+│   ├── layout
+│   │   ├── activity_main.xml
+│   │   ├── activity_stock_detail.xml
+│   │   ├── list_item_stock.xml
+│   │   └── stock_ownership_item.xml
+└── src
+    └── com
+        └── example
+            └── FinalProj
+                ├── JniDriver.java
+                ├── MainActivity.java
+                ├── StockAdapter.java
+                ├── StockDetailActivity.java
+                ├── StockOwnershipAdapter.java
+                ├── StockPriceUpdateService.java
+                └── UserAccount.java
+```
+
+안드로이드 커널이 보드에 빌드되어 있는 것을 가정
+#### board disk mount
+`mount -o rw,remount,size=6G /dev/mmcblk0p4 /data`
+
+#### insert module
+##### adb connect
+`adb start-server`
+##### host push driver file to target board
+`./push`
+##### target board insert module
+`cd /data/local/tmp && sh fpga_insmod.sh`
+
+#### install apk (host)
+`adb install FinalProj.apk`
+
+
+### 느낀점 및 개선 사항
+어플리케이션부터 JNI, driver module까지 많은 scope의 부분들을 구현하면서 어느 기능을 어디서 처리할지 설계부터 고민이 많았고 그만큼 문제 발생 및 해결을 해나가는 과정들이 많았습니다. 실시간으로 데이터가 변경되고 이를 입출력하는 과정이 많았던 만큼 동기화에서 많은 문제가 발생했고 해결하는 과정에서 리눅스 및 안드로이드 커널에 대한 학습을 병행하면서 진행했습니다. 이러한 과정 속에서 강의 때 학습했던 내용과 추가적으로 직접 구현하는 내용들에 대한 학습 및 구현이 임베디드라는 분야에 대해 이해를 할 수 있는 계기가 되었습니다.
+
+자잘한 동기화 버그(reset button으로 주식 매매시 motor 작동 X) 등이 남았고 초기에 설계했던 기능들보다 프로젝트 사이즈가 작아졌지만 기능 구현시 확장성 및 유연성을 고려하여 추후 개선 여지를 남겨두었습니다. 
