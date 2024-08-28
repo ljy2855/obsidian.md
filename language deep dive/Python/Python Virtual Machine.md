@@ -7,6 +7,8 @@ Done: true
 
 파이썬은 [[Interpreter]]를 통해 실행된다. 
 
+**![](https://lh7-rt.googleusercontent.com/slidesz/AGV_vUfsLUzDFwtfl1XF-OqaQVQyRxjQxk8IGvfSef-bRSgVcFcUspM1m7hr6QZg22V9_kdpn1CBRi8zWi8BKlat98-8z86mjtwZMeW45okUCUGS2OHbhOfnrEVzvxq4rORMknsvw_oryt6RWi-3fXaEqxYiJfhg6wYf=s2048?key=N9N6zgE9cznxhWNKY6PeDg)**
+
 ```bash
 ❯ python
 Python 3.9.13 | packaged by conda-forge | (main, May 27 2022, 17:00:33)
