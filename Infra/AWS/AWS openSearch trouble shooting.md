@@ -4,10 +4,14 @@ VPC, AZ,  IAM 정책,
 
 ### 인스턴스 설정
 #### Compute resource
+
+##### 
+##### 노드 종류
 - data node
 - master node
 - ultra warm node
 
+##### instance 종류
 #### volume resource
 - gp3
 - gp2
@@ -25,6 +29,7 @@ VPC, AZ,  IAM 정책,
 
 
 ### Haystack Integration
+
 
 
 
