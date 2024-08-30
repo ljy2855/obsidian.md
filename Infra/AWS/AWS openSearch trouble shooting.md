@@ -5,13 +5,18 @@ VPC, AZ,  IAM 정책,
 ### 인스턴스 설정
 #### Compute resource
 
-##### 
 ##### 노드 종류
 - data node
 - master node
 - ultra warm node
 
 ##### instance 종류
+
+
+##### 선택 기준
+
+
+
 #### volume resource
 - gp3
 - gp2
