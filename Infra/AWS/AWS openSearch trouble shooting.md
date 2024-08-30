@@ -26,3 +26,7 @@ VPC, AZ,  IAM 정책,
 
 ### Haystack Integration
 
+
+
+### 레퍼런스
+https://opensearch.org/blog/boost-vector-search-with-css/
