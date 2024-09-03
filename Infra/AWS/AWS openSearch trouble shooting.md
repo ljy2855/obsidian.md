@@ -5,6 +5,12 @@ VPC, AZ,  IAM 정책,
 ### 인스턴스 설정
 #### Compute resource
 
+
+#### Storage
+문서 2000개 (53MB)
+
+총 100만개의 논문 메타데이터 + 임베딩 => 26GB
+
 ##### 노드 종류
 - data node
 - master node
