@@ -4,8 +4,8 @@
 EC2, Fargate (container) 기반으로 처리됌
 
 ### Job Definition
-job이 실행되는 
-
+job이 실행되는 정의
+- 실행 시킬 스크립트
 
 ### Job Queue
 
