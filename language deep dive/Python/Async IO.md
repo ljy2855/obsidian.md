@@ -13,4 +13,13 @@ result = await loop.run_in_executor(None,fn,arg)
 
 
 
+
+
+
+
+#### args vs params
+Params
+
+
+
 ### GPU job은 async io로 보아야 하는가?
