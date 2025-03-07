@@ -47,3 +47,41 @@ PCB에는 다음과 같은 정보가 포함된다.
 7. B의 PCB에서 레지스터 값을 Kernel Stack에 복원 (Pop)
 8. B 프로세스의 Kernel Stack에서 User Stack으로 전환
 9. 유저 모드로 돌아가 B 프로세스 실행
+
+
+
+### 현재의 리눅스 시스템 변경사항
+
+과거의 운영체제와 비교할 때, 현대의 리눅스 시스템은 **더 최적화된 Context Switching 기법과 효율적인 스케줄러**를 사용한다.
+
+https://en.wikipedia.org/wiki/Linux_kernel_version_history
+
+#### **리눅스 2.6 – 선점형 커널 & Lazy FPU Switching**
+
+- **Preemptible Kernel 도입** → 커널 모드에서도 Context Switching 가능
+- **Lazy FPU Context Switching** → 부동소수점 연산이 필요할 때만 FPU 상태 저장/복원 (문맥 전환 오버헤드 감소)
+
+
+#### **리눅스 3.x – RCU & NUMA 최적화**
+
+- **RCU(Read-Copy-Update) 최적화** → 다중 코어 환경에서 커널 데이터 보호 시 Context Switching 오버헤드 감소
+- **NUMA 최적화** → 멀티코어 CPU의 메모리 접근 속도 개선 (TLB 미스 감소)
+
+
+#### **리눅스 4.x – Lazy TLB Switching & Zero-Copy 최적화**
+
+- **Lazy TLB Switching** → 불필요한 TLB 플러시 최소화하여 문맥 전환 속도 향상
+- **Zero-Copy 입출력 최적화** → 파일 I/O 시 Context Switching 감소 (`sendfile()`, `mmap()` 활용)
+
+
+#### **리눅스 5.x – 커널 스레드 최적화 & Preempt-RT 개선**
+
+- **커널 스레드와 유저 스레드 전환 최적화** → 커널 모드에서 문맥 전환 속도 향상
+- **Preempt-RT (Real-time Preempt) 개선** → 실시간 환경에서도 낮은 문맥 전환 비용 유지
+
+
+#### **리눅스 6.x – Futex2 & MGLRU 도입**
+
+- **Futex2 시스템 콜 도입** → 멀티스레드 환경에서 동기화 오버헤드 감소
+- **MGLRU (Multi-Gen LRU) 메모리 관리 기법 적용** → TLB 캐시 미스를 줄여 Context Switching 성능 향상
+
