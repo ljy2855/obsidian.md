@@ -105,6 +105,8 @@ client : SYNC
 server: SYNC + ACK
 client : ACK
 
+#### 
+
 
 ####  SYNC flooding?
 ![[Pasted image 20250308151744.png]]
