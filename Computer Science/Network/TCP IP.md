@@ -79,11 +79,32 @@ default            192.168.1.1        UGScg                 en0
 
 ![[Pasted image 20250308151545.png]]
 
+트래픽의 속도를 조절하는 기능, congestion window와 recevier advertised window 상요
+
+1. slow start
+	1. ACK 하나 받은 이후, CWND +1 -> 두배씩 커짐
+2. Congestion Avoidance
+	1. ****ssthresh**** 도달
+	2. cwnd 모두 ack 오면, cwnd +1
+3. Congestion Detection Phase
+	- `Timeout` or `3 dup ack` trigger 
+	-  Tahoe algo
+		1. **cwnd** = 1
+		2. **ssthresh** / 2
+		3. 다시 slow start
+	-  Reno algo
+		1. **ssthresh** / 2
+		2. **cwnd** = **ssthresh**
+		3. 다시 slow start
+
+
 ### TCP 3 handshake 
 
+**Connection 3 handshake**
 client : SYNC
 server: SYNC + ACK
 client : ACK
+
 
 ####  SYNC flooding?
 ![[Pasted image 20250308151744.png]]
@@ -112,15 +133,22 @@ client : ACK
 2. client가 Sync cookie로부터 SYN Cookie + 1를 방화벽으로 전송
 3. server ACK Number - 1로 복호화해서 검증
 
-**Proxy vs Transparent**
+**L4 방화벽 Proxy vs Transparent**
 - Proxy
-	- 방화벽이 client <-
+	- client <-> L4 <-> Server 각자의 tcp 연결 수립
+	- 모든 통신을 L4가 중개
+- Transparent
+	- 쿠키 발행 및 검증만 진행
+	- client <-> server tcp 연결 수립
 
-- 3-way handshake 없이도 통신이 가능한지? (UDP와 비교)
-- 
 
 
 ### TCP vs UDP
 
 ### flow control vs congestion control
 
+congestion control은 네트워크 자체의 지연을 피하기 위해서
+flow control은 rx의 데이터 처리속도보다 tx의 송신속도를 조절하기 위해서
+
+
+`awnd = min(cwnd, rwnd)`
