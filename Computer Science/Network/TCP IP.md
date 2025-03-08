@@ -105,7 +105,8 @@ client : SYNC
 server: SYNC + ACK
 client : ACK
 
-#### 
+terminate connection 4 handshake
+
 
 
 ####  SYNC flooding?
