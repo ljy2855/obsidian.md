@@ -9,3 +9,16 @@ client의 트래픽 `TCP SYN` 요청을 처리
 - 속도 빠름 
 
 ### Load balancing algorithmn
+
+#### Round Robbin
+
+#### Sticky RR
+
+#### Weighted RR
+
+#### IP/URL Hash
+
+#### Least Connections
+
+#### Least Time
+
