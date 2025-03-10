@@ -90,7 +90,8 @@ long tail? -> top-k중 일부만 크고 나머진 구림
 **이 상수(하이퍼 파라미터)는 어캐 찾음?**
 
 1. tranning set에서 n gram 확률 구함
-2. 
+2. validation set에서  확인
+3. test set에서 확인
 
 
 ##### Discounting
@@ -108,6 +109,15 @@ NN 관점에서 생각해보면,
 이후 RNN, transformer에서는 모델 아키텍처 개선으로 성능 발전
 #### Dataset
 #### train, valid, test 배분
+
+특정 모델 학습 목적
+- 트레이닝 데이터의 특징을 잘 잡아야함
+- 너무 overfitting 안되어야함
+- 학습에 사용하지 않은 validation set을 통해 학습이 잘 이루어져 있나 확인
+
+국룰 8:1:1
+
 - corpus에서 배분
 - 보지 않은 테스트셋을 얼마나 잘 생성하나?
 - 이 trainset에 얼마나 fit한지, not overfit, 
+
