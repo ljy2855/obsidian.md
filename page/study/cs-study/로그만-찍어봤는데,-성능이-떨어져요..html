@@ -1,0 +1,352 @@
+<!DOCTYPE html> <html><head>
+		<title>로그만 찍어봤는데, 성능이 떨어져요.</title>
+		<base href="../../">
+		<meta id="root-path" root-path="../../">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0">
+		<meta charset="UTF-8">
+		<meta name="description" content="Obsidian Vault - 로그만 찍어봤는데, 성능이 떨어져요.">
+		<meta property="og:title" content="로그만 찍어봤는데, 성능이 떨어져요.">
+		<meta property="og:description" content="Obsidian Vault - 로그만 찍어봤는데, 성능이 떨어져요.">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://ljy2855.github.io/obsidian.md/study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html">
+		<meta property="og:image" content="https://ljy2855.github.io/obsidian.md/lib/media/pasted-image-20250225001323.png">
+		<meta property="og:site_name" content="Obsidian Vault">
+		<meta name="author" content="ljy2855"><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://ljy2855.github.io/obsidian.md/lib/rss.xml"><script async="" id="webpage-script" src="lib/scripts/webpage.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script type="module" async="" id="graph-view-script" src="lib/scripts/graph-view.js"></script><script async="" id="graph-wasm-script" src="lib/scripts/graph-wasm.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-render-worker-script" src="lib/scripts/graph-render-worker.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="tinycolor-script" src="lib/scripts/tinycolor.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="pixi-script" src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.0/pixi.min.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="minisearch-script" src="https://cdn.jsdelivr.net/npm/minisearch@6.3.0/dist/umd/index.min.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><link rel="icon" href="lib/media/favicon.png"><script async="" id="graph-data-script" src="lib/scripts/graph-data.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><style>body{--line-width:40em;--line-width-adaptive:40em;--file-line-width:40em;--sidebar-width:min(20em, 80vw);--collapse-arrow-size:11px;--tree-horizontal-spacing:0.6em;--tree-vertical-spacing:0.6em;--sidebar-margin:12px}.sidebar{height:100%;min-width:calc(var(--sidebar-width) + var(--divider-width-hover));max-width:calc(var(--sidebar-width) + var(--divider-width-hover));font-size:14px;z-index:10;position:relative;overflow:hidden;transition:min-width ease-in-out,max-width ease-in-out;transition-duration:.2s;contain:size}.sidebar-left{left:0}.sidebar-right{right:0}.sidebar.is-collapsed{min-width:0;max-width:0}body.floating-sidebars .sidebar{position:absolute}.sidebar-content{height:100%;min-width:calc(var(--sidebar-width) - var(--divider-width-hover));top:0;padding:var(--sidebar-margin);padding-top:4em;line-height:var(--line-height-tight);background-color:var(--background-secondary);transition:background-color,border-right,border-left,box-shadow;transition-duration:var(--color-fade-speed);transition-timing-function:ease-in-out;position:absolute;display:flex;flex-direction:column}.sidebar:not(.is-collapsed) .sidebar-content{min-width:calc(max(100%,var(--sidebar-width)) - 3px);max-width:calc(max(100%,var(--sidebar-width)) - 3px)}.sidebar-left .sidebar-content{left:0;border-top-right-radius:var(--radius-l);border-bottom-right-radius:var(--radius-l)}.sidebar-right .sidebar-content{right:0;border-top-left-radius:var(--radius-l);border-bottom-left-radius:var(--radius-l)}.sidebar:has(.sidebar-content:empty):has(.topbar-content:empty){display:none}.sidebar-topbar{height:2em;width:var(--sidebar-width);top:var(--sidebar-margin);padding-inline:var(--sidebar-margin);z-index:1;position:fixed;display:flex;align-items:center;transition:width ease-in-out;transition-duration:inherit}.sidebar.is-collapsed .sidebar-topbar{width:calc(2.3em + var(--sidebar-margin) * 2)}.sidebar .sidebar-topbar.is-collapsed{width:0}.sidebar-left .sidebar-topbar{left:0}.sidebar-right .sidebar-topbar{right:0}.topbar-content{overflow:hidden;overflow:clip;width:100%;height:100%;display:flex;align-items:center;transition:inherit}.sidebar.is-collapsed .topbar-content{width:0;transition:inherit}.clickable-icon.sidebar-collapse-icon{background-color:transparent;color:var(--icon-color-focused);padding:0!important;margin:0!important;height:100%!important;width:2.3em!important;margin-inline:0.14em!important;position:absolute}.sidebar-left .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);right:var(--sidebar-margin)}.sidebar-right .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);left:var(--sidebar-margin)}.clickable-icon.sidebar-collapse-icon svg.svg-icon{width:100%;height:100%}.sidebar-section-header{margin:0 0 1em 0;text-transform:uppercase;letter-spacing:.06em;font-weight:600}body{transition:background-color var(--color-fade-speed) ease-in-out}.webpage-container{display:flex;flex-direction:row;height:100%;width:100%;align-items:stretch;justify-content:center}.document-container{opacity:1;flex-basis:100%;max-width:100%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .2s ease-in-out;contain:inline-size}.hide{opacity:0;transition:opacity .2s ease-in-out}.document-container>.markdown-preview-view{margin:var(--sidebar-margin);margin-bottom:0;width:100%;width:-webkit-fill-available;width:-moz-available;width:fill-available;background-color:var(--background-primary);transition:background-color var(--color-fade-speed) ease-in-out;border-top-right-radius:var(--window-radius,var(--radius-m));border-top-left-radius:var(--window-radius,var(--radius-m));overflow-x:hidden!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;contain:inline-size}.document-container>.markdown-preview-view>.markdown-preview-sizer{padding-bottom:80vh!important;width:100%!important;max-width:var(--line-width)!important;flex-basis:var(--line-width)!important;transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}.markdown-rendered img:not([width]),.view-content img:not([width]){max-width:100%;outline:0}.document-container>.view-content.embed{display:flex;padding:1em;height:100%;width:100%;align-items:center;justify-content:center}.document-container>.view-content.embed>*{max-width:100%;max-height:100%;object-fit:contain}:has(> :is(.math,table)){overflow-x:auto!important}.document-container>.view-content{overflow-x:auto;contain:content;padding:0;margin:0;height:100%}.scroll-highlight{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1000;background-color:hsla(var(--color-accent-hsl),.25);opacity:0;padding:1em;inset:50%;translate:-50% -50%;border-radius:var(--radius-s)}</style><script defer="">async function loadIncludes(){if("file:"!=location.protocol){let e=document.querySelectorAll("include");for(let t=0;t<e.length;t++){let o=e[t],l=o.getAttribute("src");try{const e=await fetch(l);if(!e.ok){console.log("Could not include file: "+l),o?.remove();continue}let t=await e.text(),n=document.createRange().createContextualFragment(t),i=Array.from(n.children);for(let e of i)e.classList.add("hide"),e.style.transition="opacity 0.5s ease-in-out",setTimeout((()=>{e.classList.remove("hide")}),10);o.before(n),o.remove(),console.log("Included file: "+l)}catch(e){o?.remove(),console.log("Could not include file: "+l,e);continue}}}else{if(document.querySelectorAll("include").length>0){var e=document.createElement("div");e.id="error",e.textContent="Web server exports must be hosted on an http / web server to be viewed correctly.",e.style.position="fixed",e.style.top="50%",e.style.left="50%",e.style.transform="translate(-50%, -50%)",e.style.fontSize="1.5em",e.style.fontWeight="bold",e.style.textAlign="center",document.body.appendChild(e),document.querySelector(".document-container")?.classList.remove("hide")}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script"))),l=0;!function e(){let n=o[l];l++,n&&"true"!=n.getAttribute("loaded")||l<o.length&&e(),l<o.length?n.addEventListener("load",e):t()}()}</script><link rel="stylesheet" href="lib/styles/obsidian.css"><link rel="stylesheet" href="lib/styles/theme.css"><link rel="preload" href="lib/styles/global-variable-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/global-variable-styles.css"></noscript><link rel="preload" href="lib/styles/supported-plugins.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/supported-plugins.css"></noscript><link rel="preload" href="lib/styles/main-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/main-styles.css"></noscript></head><body class="publish css-settings-manager theme-light show-inline-title show-ribbon ctp-latte ctp-mocha ctp-accent-light-lavender ctp-accent-rosewater anuppuccin-accent-toggle anp-latex-inline-text anp-latex-block-text anp-list-toggle anp-hide-external-link-icon anp-h1-red anp-h2-peach anp-h3-green anp-h4-teal anp-h5-lavender anp-h6-mauve anp-bold-red anp-italic-green anp-highlight-yellow anp-file-icons anp-collapse-folders anp-simple-rainbow-color-toggle anp-simple-rainbow-title-toggle anp-simple-rainbow-collapse-icon-toggle anp-simple-rainbow-indentation-toggle anp-simple-rainbow-icon-toggle anp-bg-fix"><script defer="">let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script><div class="webpage-container workspace"><div class="sidebar-left sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content"><div class="search-input-container"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div class="search-input-clear-button" aria-label="Clear search"></div></div><include src="lib/html/file-tree.html"></include></div><script defer="">let ls = document.querySelector(".sidebar-left"); ls.classList.add("is-collapsed"); if (window.innerWidth > 768) ls.classList.remove("is-collapsed"); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div><div class="document-container markdown-reading-view hide"><div class="markdown-preview-view markdown-rendered allow-fold-headings allow-fold-lists is-readable-line-width"><style id="MJX-CHTML-styles"></style><div class="markdown-preview-sizer markdown-preview-section"><h1 class="page-title heading inline-title" id="로그만 찍어봤는데, 성능이 떨어져요."><p dir="auto">로그만 찍어봤는데, 성능이 떨어져요.</p></h1><div class="el-p"><p dir="auto"><a href="?query=tag:IO" class="tag" target="_blank" rel="noopener nofollow">#IO</a> <a href="?query=tag:system" class="tag" target="_blank" rel="noopener nofollow">#system</a> </p></div><div class="el-p"><p dir="auto">백준이나 프로그래머스에서 코딩테스트를 준비해본 경험이 있을까요?</p></div><div class="el-p"><p dir="auto">해당 PS 사이트에서는 알고리즘의 효율성을 기준으로 점수를 매기게 되는데요,</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">시간 복잡도 : 얼마나 적은 연산을 했나 (실행시간)</li>
+<li data-line="1" dir="auto">공간 복잡도 : 얼마나 적은 메모리를 사용했나</li>
+</ul></div><div class="el-p"><p dir="auto">가끔 이런 상황이 생길 때가 있어요.</p></div><div class="el-h3 heading-wrapper"><h3 data-heading="문제 상황" dir="auto" class="heading" id="문제_상황"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>문제 상황</h3><div class="heading-children"><div class="el-pre"><pre class="language-python" tabindex="0"><code data-line="0" class="language-python is-loaded"><span class="token keyword">def</span> <span class="token function">solution</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> stations<span class="token punctuation">,</span> w<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    answer <span class="token operator">=</span> <span class="token number">0</span>
+    start <span class="token operator">=</span> <span class="token number">1</span>
+    
+    <span class="token keyword">for</span> station <span class="token keyword">in</span> stations<span class="token punctuation">:</span>
+        count <span class="token operator">=</span> station <span class="token operator">-</span> w <span class="token operator">-</span> start
+        <span class="token keyword">if</span> count <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            answer <span class="token operator">+=</span> math<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span>count <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> w <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        start <span class="token operator">=</span> station <span class="token operator">+</span> w <span class="token operator">+</span> <span class="token number">1</span>
+    
+    <span class="token keyword">if</span> start <span class="token operator">&lt;=</span> n<span class="token punctuation">:</span>
+        count <span class="token operator">=</span> n <span class="token operator">-</span> start <span class="token operator">+</span> <span class="token number">1</span>
+        answer <span class="token operator">+=</span> math<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span>count <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> w <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">return</span> answer
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">디버깅을 위해 print 출력 코드를 남겨놓은 채로 답을 제출하면, 이런 결과를 확인하게 되는데요,<br>
+<span alt="asset/Pasted image 20250225001323.png" src="asset/Pasted image 20250225001323.png" class="internal-embed media-embed image-embed is-loaded"><img alt="asset/Pasted image 20250225001323.png" src="lib/media/pasted-image-20250225001323.png"></span><br>
+프로그래머스를 기준으로 좌측이 실행시간, 우측이 메모리 사용량을 의미해요.</p></div><div class="el-p"><p dir="auto">채점 환경마다 다를 수 있지만, 보통의 경우 실행시간을 통해 해당 모듈이 얼마나 효율적으로 작성되었는지를 판단하게 돼요</p></div><div class="el-p"><p dir="auto">print 코드를 제거하고 다시 제출을 해보면 다음과 같아요.<br>
+<span alt="asset/Pasted image 20250225001339.png" src="asset/Pasted image 20250225001339.png" class="internal-embed media-embed image-embed is-loaded"><img alt="asset/Pasted image 20250225001339.png" src="lib/media/pasted-image-20250225001339.png"></span></p></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="결과" dir="auto" class="heading" id="결과"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>결과</h3><div class="heading-children"><div class="el-p"><p dir="auto">실행 시간이 절반 넘개 단축된 것을 확인할 수 있어요. 알고리즘을 변형한 것이 아니라 단순히 <strong>print 하나만 없앴더니 이정도의 성능 향상을 이뤄낸 것이죠!</strong></p></div><div class="el-p"><p dir="auto">왜 이런 일이 일어난걸까요? 한번 하나하나 파헤쳐가 봅시다.</p></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="가설 1. 파이썬이 너무 느려서 아닐까요?" dir="auto" class="heading" id="가설_1._파이썬이_너무_느려서_아닐까요?"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>가설 1. 파이썬이 너무 느려서 아닐까요?</h3><div class="heading-children"><div class="el-p"><p dir="auto">들어본 말로는 "<strong>파이썬은 다른 언어에 비해서 느리다</strong>" 라고 들어본 것 같아요.<br>
+그럼 같은 로직을 훨씬 빠른 저수준 언어로 작성해볼까요?</p></div><div class="el-pre"><pre class="language-cpp" tabindex="0"><code data-line="0" class="language-cpp is-loaded"><span class="token keyword">int</span> <span class="token function">solution</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> stations<span class="token punctuation">,</span> <span class="token keyword">int</span> w<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> answer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  
+    <span class="token keyword">int</span> start <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">;</span>i <span class="token operator">&lt;</span> stations<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	    
+        <span class="token keyword">float</span> count <span class="token operator">=</span> stations<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> start <span class="token operator">-</span> w<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>count <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            start <span class="token operator">=</span> stations<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span>w<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">continue</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        cout <span class="token operator">&lt;&lt;</span> count<span class="token punctuation">;</span>
+            
+        answer <span class="token operator">+=</span> <span class="token function">ceil</span><span class="token punctuation">(</span>count<span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>w<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        start <span class="token operator">=</span> stations<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span>w<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout <span class="token operator">&lt;&lt;</span> start <span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>start <span class="token operator">&lt;=</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">float</span> count <span class="token operator">=</span> n <span class="token operator">-</span> start<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+        answer <span class="token operator">+=</span> <span class="token function">ceil</span><span class="token punctuation">(</span>count<span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>w<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">return</span> answer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto"><span alt="asset/Pasted image 20250225002403.png" src="asset/Pasted image 20250225002403.png" class="internal-embed media-embed image-embed is-loaded"><img alt="asset/Pasted image 20250225002403.png" src="lib/media/pasted-image-20250225002403.png"></span></p></div><div class="el-p"><p dir="auto">결과를 보면 오히려 <strong>시간 초과가 발생</strong>해 버리네요. 그렇다면 단순히 "파이썬이 느려서" 그런 것은 아닌 것 같아요.</p></div><div class="el-p"><p dir="auto">실제로 Python의 구현체 중 가장 유명한 것은 <strong>CPython</strong>으로, 파이썬 코드를 실행하는 <strong>인터프리터는 C로 작성</strong>되어 있어요.</p></div><div class="el-p"><p dir="auto">때문에 실제 Python에서 호출된 <code>print()</code> 함수는 내부적으로 C의 <code>printf()</code> 라이브러리를 거쳐 <code>write()</code> 함수를 통해 실행되게 됩니다!</p></div><div class="el-p"><p dir="auto"><a rel="noopener nofollow" class="external-link" href="https://stackoverflow.com/questions/59039963/implementation-of-print-in-python" target="_blank">https://stackoverflow.com/questions/59039963/implementation-of-print-in-python</a></p></div><div class="el-p"><p dir="auto"><span alt="Pasted image 20250225003146.png" src="Pasted image 20250225003146.png" class="internal-embed media-embed image-embed is-loaded"><img alt="Pasted image 20250225003146.png" src="lib/media/pasted-image-20250225003146.png"></span><br>
+<span alt="Pasted image 20250225154056.png" src="Pasted image 20250225154056.png" class="internal-embed media-embed image-embed is-loaded"><img alt="Pasted image 20250225154056.png" src="lib/media/pasted-image-20250225154056.png"></span></p></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="가설2. 출력 연산은 다른 연산과 다르게 느린거 아닐까요?" dir="auto" class="heading" id="가설2._출력_연산은_다른_연산과_다르게_느린거_아닐까요?"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>가설2. 출력 연산은 다른 연산과 다르게 느린거 아닐까요?</h3><div class="heading-children"><div class="el-p"><p dir="auto">위에서 확인해본 바와 같이 실제로 Python이 실제로 C가 구현체인 <code>write</code>를 호출한다는 걸 알았어요.</p></div><div class="el-p"><p dir="auto">그럼 <code>write</code> 함수는 왜 다른 연산과 다르게 느린건가요?</p></div><div class="el-h4 heading-wrapper"><h4 data-heading="System call" dir="auto" class="heading" id="System_call"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>System call</h4><div class="heading-children"><div class="el-p"><p dir="auto">그렇다면 어떻게 개별 프로세스에게 공유한 자원에 접근 가능하도록 허용할까요?<br>
+프로세스들은 실행 중에 <strong>파일 또는 디바이스에 접근 시에 메모리를 우선적으로 참조해 접근</strong>하게 돼요. </p></div><div class="el-p"><p dir="auto">virtual memory layout<br>
+<span alt="Pasted image 20250302141721.png" src="Pasted image 20250302141721.png" class="internal-embed media-embed image-embed is-loaded"><img alt="Pasted image 20250302141721.png" src="lib/media/pasted-image-20250302141721.png"></span></p></div><div class="el-p"><p dir="auto">다른 프로세스에 접근하지 못하도록 프로세스 별로 고유의 메모리 영역을 가지고 잘못된 접근 시, page fault를 발생시켜요. (물론 정상적인 접근시에도 page fault가 발생할 수 있어요)</p></div><div class="el-p"><p dir="auto"><span alt="asset/Pasted image 20250227173918.png" src="asset/Pasted image 20250227173918.png" class="internal-embed media-embed image-embed is-loaded"><img alt="asset/Pasted image 20250227173918.png" src="lib/media/pasted-image-20250227173918.png"></span><br>
+때문에 프로세스가 <strong>자원을 점유중인지 판단, 할당하는 작업은 중앙의 커널이 모두 처리하고 있어요</strong></p></div><div class="el-p"><p dir="auto">각 프로세스들은 각각의 자원들(파일, 메모리, 디스크, 네트워크 ...)을 공유하면서도 다른 프로세스들의 정보는 모르기 때문에, <strong>system call을 사용하여 운영체제에게 확인 및 처리를 요청하게 돼요.</strong></p></div><div class="el-p"><p dir="auto">우리가 익숙한 출력창도 실제론 stdout이라는 파일로, 우리가 실행하는 프로그램이 해당 파일에 쓰기를 진행하고, 파일에 써진 내용이 출력되는 거죠!</p></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto">프로세스 실행 시, system call</li>
+<li data-line="1" dir="auto">software interrupt(trap) 호출</li>
+<li data-line="2" dir="auto">커널 모드로 context switching</li>
+<li data-line="3" dir="auto">커널에서 요청한 작업 수행</li>
+<li data-line="4" dir="auto">실행 중인 process의 context로 돌아와서 다음 instruction 실행 </li>
+</ol></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="Context Switching" dir="auto" class="heading" id="Context_Switching"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Context Switching</h4><div class="heading-children"><div class="el-p"><p dir="auto">시스템 콜 호출시, 프로세스 실행 중 커널 모드로 전환된다고 했는데,  <strong>context switching</strong>이 발생하게 돼요.<br>
+컴퓨터(CPU Core)는 한번에 하나의 프로세스밖에 실행할 수 없기에, 현재 진행중인 프로세스를 상태를 저장하고 다른 프로세스를 전환하는 과정이 발생해요.</p></div><div class="el-p"><p dir="auto">실제로 이러한 context switching는 일반 연산보다 훨씬 비싼 연산을 가지게 돼요.</p></div><div class="el-p"><p dir="auto"><span alt="asset/Pasted image 20250301195935.png" src="asset/Pasted image 20250301195935.png" class="internal-embed media-embed image-embed is-loaded"><img alt="asset/Pasted image 20250301195935.png" src="lib/media/pasted-image-20250301195935.png"></span></p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">자료에선 Thread context switching 비용을 비교하고 있음</li>
+<li data-line="1" dir="auto">실제론 Process context switching 비용이 더욱 비쌈</li>
+</ul></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="IO blocking" dir="auto" class="heading" id="IO_blocking"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>IO blocking</h4><div class="heading-children"><div class="el-p"><p dir="auto">IO device 작업을 완료될까지 기다리는게 되는데, 이를 IO blocking이라고 해요.</p></div><div class="el-p"><p dir="auto">CPU에서 코드가 실행되고 있는 도중에 IO 작업시에는 I/O bus를 타고 작업을 요청하고 해당 프로세스는 blocking(sleep) 상태에 빠지게 돼요. </p></div><div class="el-p"><p dir="auto">이후 I/O 작업이 완료되면, CPU로 Interrupt를 통해 해당 프로세스를 깨우게 되고, 다음 instruction을 수행하게 돼요.</p></div><div class="el-p"><p dir="auto"><span alt="asset/Pasted image 20250301200836.png" src="asset/Pasted image 20250301200836.png" class="internal-embed media-embed image-embed is-loaded"><img alt="asset/Pasted image 20250301200836.png" src="lib/media/pasted-image-20250301200836.png"></span></p></div><div class="el-p"><p dir="auto"><span alt="asset/Pasted image 20250301200117.png" src="asset/Pasted image 20250301200117.png" class="internal-embed media-embed image-embed is-loaded"><img alt="asset/Pasted image 20250301200117.png" src="lib/media/pasted-image-20250301200117.png"></span></p></div></div></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="비동기처리" dir="auto" class="heading" id="비동기처리"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>비동기처리</h3><div class="heading-children"><div class="el-p"><p dir="auto">그렇다면 위와 같은 문제를 개선해봐요.<br>
+기존 작업이 아래와 같다면, IO 처리에 CPU는 놀고 있는 경우가 발생해요<br>
+<span alt="Pasted image 20250301203936.png" src="Pasted image 20250301203936.png" class="internal-embed media-embed image-embed is-loaded"><img alt="Pasted image 20250301203936.png" src="lib/media/pasted-image-20250301203936.png"></span><br>
+IO 작업을 요청만 보내고 완료를 기다리지 않고 다음 작업을 처리한다면<br>
+(IO response를 다음 로직에 사용하지 않는다면)</p></div><div class="el-p"><p dir="auto"><span alt="asset/Pasted image 20250301204227.png" src="asset/Pasted image 20250301204227.png" class="internal-embed media-embed image-embed is-loaded"><img alt="asset/Pasted image 20250301204227.png" src="lib/media/pasted-image-20250301204227.png"></span><br>
+IO waiting 하는 시간에 다른 CPU job을 실행하며, 성능 개선을 이뤄낼 수 있지 않을까요?<br>
+이러한 방법을 non-blocking asynchronous라고 해요. </p></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="실제로 적용해볼까요?" dir="auto" class="heading" id="실제로_적용해볼까요?"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>실제로 적용해볼까요?</h3><div class="heading-children"><div class="el-h4 heading-wrapper"><h4 data-heading="실험 세팅" dir="auto" class="heading" id="실험_세팅"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>실험 세팅</h4><div class="heading-children"><div class="el-p"><p dir="auto">docker-compose.yaml</p></div><div class="el-pre"><pre class="language-yaml" tabindex="0"><code data-line="0" class="language-yaml is-loaded"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">uvicorn_app</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span> .
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"8000:8000"</span>
+    <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+        <span class="token key atrule">limits</span><span class="token punctuation">:</span>
+          <span class="token key atrule">cpus</span><span class="token punctuation">:</span> <span class="token string">"0.5"</span>       <span class="token comment"># 최대 0.5코어</span>
+          <span class="token key atrule">memory</span><span class="token punctuation">:</span> <span class="token string">"256M"</span>    <span class="token comment"># 최대 256MB 메모리</span>
+
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto"><code>docker-compose --compatibility up --build -d</code></p></div><div class="el-p"><p dir="auto">main.py</p></div><div class="el-pre"><pre class="language-python" tabindex="0"><code data-line="0" class="language-python is-loaded">app <span class="token operator">=</span> FastAPI<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 동기 로깅 설정 (기본 logging 모듈 사용)</span>
+sync_logger <span class="token operator">=</span> logging<span class="token punctuation">.</span>getLogger<span class="token punctuation">(</span><span class="token string">"sync-logger"</span><span class="token punctuation">)</span>
+sync_logger<span class="token punctuation">.</span>setLevel<span class="token punctuation">(</span>logging<span class="token punctuation">.</span>INFO<span class="token punctuation">)</span>
+
+<span class="token comment"># 비동기 로거 설정 (aiologger 사용)</span>
+async_logger <span class="token operator">=</span> AsyncLogger<span class="token punctuation">.</span>with_default_handlers<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"async-logger"</span><span class="token punctuation">,</span>level<span class="token operator">=</span>LogLevel<span class="token punctuation">.</span>INFO<span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/sync"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">sync_endpoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""동기 방식으로 로그 출력"""</span>
+    sync_logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Sync log: </span><span class="token interpolation"><span class="token punctuation">{</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Synchronous logging to Elasticsearch complete"</span><span class="token punctuation">}</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/async"</span><span class="token punctuation">)</span>
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">async_endpoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""비동기 방식으로 로그 출력"""</span>
+    async_logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Async log: </span><span class="token interpolation"><span class="token punctuation">{</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Asynchronous logging to Elasticsearch complete"</span><span class="token punctuation">}</span>
+
+<span class="token comment">### raw한 로깅 endpoint</span>
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/sync-raw"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">sync_raw_endpoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""동기 방식으로 로그 출력 (sys.stdout.write 사용)"""</span>
+    sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Sync log: </span><span class="token interpolation"><span class="token punctuation">{</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">\n"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Synchronous logging to stdout complete"</span><span class="token punctuation">}</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/async-raw"</span><span class="token punctuation">)</span>
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">async_raw_endpoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""비동기 방식으로 로그 출력 (sys.stdout.write 사용)"""</span>
+    <span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">write_log</span><span class="token punctuation">(</span><span class="token builtin">buffer</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token builtin">buffer</span><span class="token punctuation">)</span>
+        <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+    loop <span class="token operator">=</span> events<span class="token punctuation">.</span>get_running_loop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    task <span class="token operator">=</span> loop<span class="token punctuation">.</span>create_task<span class="token punctuation">(</span>write_log<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Async log: </span><span class="token interpolation"><span class="token punctuation">{</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">\n"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Asynchronous logging to stdout complete"</span><span class="token punctuation">}</span>
+
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">간단한 fastapi 서버를 만들어 보고 두가지 방식의 logger를 통해서 비교를 해봐요</p></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="부하테스트" dir="auto" class="heading" id="부하테스트"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>부하테스트</h4><div class="heading-children"><div class="el-p"><p dir="auto"><strong>Client Side</strong></p></div><div class="el-pre"><pre class="language-sh" tabindex="0"><code data-line="0" class="language-sh is-loaded">~ ❯ ab <span class="token parameter variable">-n</span> <span class="token number">10000</span> <span class="token parameter variable">-c</span> <span class="token number">100</span> http://127.0.0.1:8000/sync
+Percentage of the requests served within a certain <span class="token function">time</span> <span class="token punctuation">(</span>ms<span class="token punctuation">)</span>
+  <span class="token number">50</span>%     <span class="token number">92</span>
+  <span class="token number">66</span>%     <span class="token number">94</span>
+  <span class="token number">75</span>%     <span class="token number">96</span>
+  <span class="token number">80</span>%     <span class="token number">97</span>
+  <span class="token number">90</span>%     <span class="token number">99</span>
+  <span class="token number">95</span>%    <span class="token number">101</span>
+  <span class="token number">98</span>%    <span class="token number">104</span>
+  <span class="token number">99</span>%    <span class="token number">107</span>
+ <span class="token number">100</span>%    <span class="token number">159</span> <span class="token punctuation">(</span>longest request<span class="token punctuation">)</span>
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-pre"><pre class="language-sh" tabindex="0"><code data-line="0" class="language-sh is-loaded">~ ❯ ab <span class="token parameter variable">-n</span> <span class="token number">10000</span> <span class="token parameter variable">-c</span> <span class="token number">100</span> http://127.0.0.1:8000/async
+Percentage of the requests served within a certain <span class="token function">time</span> <span class="token punctuation">(</span>ms<span class="token punctuation">)</span>
+  <span class="token number">50</span>%     <span class="token number">73</span>
+  <span class="token number">66</span>%     <span class="token number">77</span>
+  <span class="token number">75</span>%     <span class="token number">77</span>
+  <span class="token number">80</span>%     <span class="token number">78</span>
+  <span class="token number">90</span>%     <span class="token number">80</span>
+  <span class="token number">95</span>%     <span class="token number">83</span>
+  <span class="token number">98</span>%     <span class="token number">84</span>
+  <span class="token number">99</span>%     <span class="token number">87</span>
+ <span class="token number">100</span>%     <span class="token number">88</span> <span class="token punctuation">(</span>longest request<span class="token punctuation">)</span>
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto"><strong>Response time</strong><br>
+낮을수록 좋음</p></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th align="center" dir="ltr">Percentile</th>
+<th align="center" dir="ltr">/sync</th>
+<th align="center" dir="ltr">/async</th>
+<th align="center" dir="ltr">/async-raw</th>
+<th align="center" dir="ltr">/sync-raw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" dir="auto"><strong>50%</strong></td>
+<td align="center" dir="ltr">92 ms</td>
+<td align="center" dir="ltr">73 ms</td>
+<td align="center" dir="ltr">69 ms</td>
+<td align="center" dir="ltr">91 ms</td>
+</tr>
+<tr>
+<td align="center" dir="auto"><strong>66%</strong></td>
+<td align="center" dir="ltr">94 ms</td>
+<td align="center" dir="ltr">77 ms</td>
+<td align="center" dir="ltr">75 ms</td>
+<td align="center" dir="ltr">93 ms</td>
+</tr>
+<tr>
+<td align="center" dir="auto"><strong>75%</strong></td>
+<td align="center" dir="ltr">96 ms</td>
+<td align="center" dir="ltr">77 ms</td>
+<td align="center" dir="ltr">76 ms</td>
+<td align="center" dir="ltr">94 ms</td>
+</tr>
+<tr>
+<td align="center" dir="auto"><strong>80%</strong></td>
+<td align="center" dir="ltr">97 ms</td>
+<td align="center" dir="ltr">78 ms</td>
+<td align="center" dir="ltr">76 ms</td>
+<td align="center" dir="ltr">95 ms</td>
+</tr>
+<tr>
+<td align="center" dir="auto"><strong>90%</strong></td>
+<td align="center" dir="ltr">99 ms</td>
+<td align="center" dir="ltr">80 ms</td>
+<td align="center" dir="ltr">79 ms</td>
+<td align="center" dir="ltr">98 ms</td>
+</tr>
+<tr>
+<td align="center" dir="auto"><strong>95%</strong></td>
+<td align="center" dir="ltr">101 ms</td>
+<td align="center" dir="ltr">83 ms</td>
+<td align="center" dir="ltr">82 ms</td>
+<td align="center" dir="ltr">102 ms</td>
+</tr>
+<tr>
+<td align="center" dir="auto"><strong>98%</strong></td>
+<td align="center" dir="ltr">104 ms</td>
+<td align="center" dir="ltr">84 ms</td>
+<td align="center" dir="ltr">83 ms</td>
+<td align="center" dir="ltr">106 ms</td>
+</tr>
+<tr>
+<td align="center" dir="auto"><strong>99%</strong></td>
+<td align="center" dir="ltr">107 ms</td>
+<td align="center" dir="ltr">87 ms</td>
+<td align="center" dir="ltr">83 ms</td>
+<td align="center" dir="ltr">109 ms</td>
+</tr>
+<tr>
+<td align="center" dir="auto"><strong>100%</strong></td>
+<td align="center" dir="ltr">159 ms</td>
+<td align="center" dir="ltr">88 ms</td>
+<td align="center" dir="ltr">88 ms</td>
+<td align="center" dir="ltr">162 ms</td>
+</tr>
+</tbody>
+</table></div><div class="el-p"><p dir="auto"><strong>Server Side</strong><br>
+Sync<br>
+<span alt="Pasted image 20250302161652.png" src="Pasted image 20250302161652.png" class="internal-embed media-embed image-embed is-loaded"><img alt="Pasted image 20250302161652.png" src="lib/media/pasted-image-20250302161652.png"></span><br>
+Async<br>
+<span alt="Pasted image 20250302161712.png" src="Pasted image 20250302161712.png" class="internal-embed media-embed image-embed is-loaded"><img alt="Pasted image 20250302161712.png" src="lib/media/pasted-image-20250302161712.png"></span></p></div><div class="el-p"><p dir="auto"><strong>cswch (context switch)</strong></p></div><div class="el-p"><p dir="auto"><strong>스스로 CPU 사용을 포기</strong>(yield)하거나, 블로킹 연산을 호출하여 <strong>자발적으로 CPU를 내놓는</strong> 상황에서 발생</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto"><strong>I/O 요청</strong>(디스크, 네트워크 등)을 하여 프로세스가 “데이터가 도착할 때까지 기다린다”고 선언 → CPU를 내놓고 대기 상태로 전환</li>
+<li data-line="1" dir="auto"><strong><code>sleep()</code></strong> 같은 시스템 호출로 의도적으로 기다림</li>
+<li data-line="2" dir="auto"><strong><code>yield()</code></strong> 호출 등 프로세스가 스스로 양보</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">실험군</th>
+<th dir="ltr">Count</th>
+<th dir="ltr">Min</th>
+<th dir="ltr">P50</th>
+<th dir="ltr">P90</th>
+<th dir="ltr">P95</th>
+<th dir="ltr">P99</th>
+<th dir="ltr">Max</th>
+<th dir="ltr">Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>sync</strong></td>
+<td dir="auto">80</td>
+<td dir="auto">248.51</td>
+<td dir="auto">580.00</td>
+<td dir="auto">700.00</td>
+<td dir="auto">745.00</td>
+<td dir="auto">813.50</td>
+<td dir="auto">853.00</td>
+<td dir="auto">577.95</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>async</strong></td>
+<td dir="auto">52</td>
+<td dir="auto">0.00</td>
+<td dir="auto">0.00</td>
+<td dir="auto">1.98</td>
+<td dir="auto">2.44</td>
+<td dir="auto">4.98</td>
+<td dir="auto">6.00</td>
+<td dir="auto">0.44</td>
+</tr>
+</tbody>
+</table></div><div class="el-p"><p dir="auto"><strong>nvcswch (involuntary context switch)</strong></p></div><div class="el-p"><p dir="auto"><strong>운영체제의 스케줄러</strong>가 <strong>프로세스를 강제적으로</strong> CPU에서 밀어내는 경우 발생</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto"><strong>타임 슬라이스</strong>(time slice, time quantum)가 끝나서 커널이 프로세스를 중단하고 다른 프로세스로 교체</li>
+<li data-line="1" dir="auto"><strong>더 높은 우선순위</strong>를 가진 프로세스가 준비 상태가 되어, 현재 프로세스를 강제로 중단하고 CPU를 가져감 (preemption)</li>
+<li data-line="2" dir="auto"><strong>인터럽트</strong>로 인해 커널이 현재 프로세스를 중지하고, 인터럽트 처리나 다른 작업을 우선 수행</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">실험군</th>
+<th dir="ltr">Count</th>
+<th dir="ltr">Min</th>
+<th dir="ltr">P50</th>
+<th dir="ltr">P90</th>
+<th dir="ltr">P95</th>
+<th dir="ltr">P99</th>
+<th dir="ltr">Max</th>
+<th dir="ltr">Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>sync</strong></td>
+<td dir="auto">80</td>
+<td dir="auto">4.00</td>
+<td dir="auto">10.00</td>
+<td dir="auto">94.00</td>
+<td dir="auto">100.00</td>
+<td dir="auto">129.00</td>
+<td dir="auto">175.0</td>
+<td dir="auto">34.53</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>sync</strong></td>
+<td dir="auto">52</td>
+<td dir="auto">7.00</td>
+<td dir="auto">14.00</td>
+<td dir="auto">15.00</td>
+<td dir="auto">15.45</td>
+<td dir="auto">16.00</td>
+<td dir="auto">16.00</td>
+<td dir="auto">13.90</td>
+</tr>
+</tbody>
+</table></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="결과 분석" dir="auto" class="heading" id="결과_분석"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>결과 분석</h4><div class="heading-children"><div class="el-p"><p dir="auto"><strong>SYNC</strong></p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto"><strong>로그를 남길 때마다</strong> 파일 I/O 또는 네트워크 I/O(예: 외부 로깅 시스템) <strong>블로킹</strong>이 발생</li>
+<li data-line="1" dir="auto">프로세스가 I/O가 끝날 때까지 <strong>자발적(Voluntary)으로 CPU를 반환</strong>하고 대기</li>
+<li data-line="2" dir="auto">따라서 “<strong>자발적 컨텍스트 스위치(<code>cswch/s</code>)</strong>” 횟수가 많이 증가</li>
+<li data-line="3" dir="auto">또한 로깅 시점에 잠시 멈춰야 하므로, <strong>응답 처리</strong>에도 지연이 생길 수 있음</li>
+<li data-line="4" dir="auto">프로세스가 로그 I/O 때문에 자주 멈춤 → 자발적 컨텍스트 스위치 급증</li>
+<li data-line="5" dir="auto">요청 처리에 지연이 생길 수 있고, 부하가 커질수록 병목이 심화</li>
+</ul></div><div class="el-p"><p dir="auto"><strong>ASYNC</strong></p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">로깅이 별도 비동기 처리로 빠져, 본 로직(엔드포인트 처리) 입장에서는 I/O 대기가 최소화</li>
+<li data-line="1" dir="auto">높은 처리량(Throughput)과 낮은 응답 지연(Latency)을 기대할 수 있음</li>
+<li data-line="2" dir="auto">실제 측정에서도 자발적 CS가 거의 없고, CPU 스케줄러에 의한 강제 스위치만 발생</li>
+</ul></div></div></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="비동기 처리에 대한 주절주절" dir="auto" class="heading" id="비동기_처리에_대한_주절주절"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>비동기 처리에 대한 주절주절</h3><div class="heading-children"><div class="el-h4 heading-wrapper"><h4 data-heading="CPU bound vs IO bound" dir="auto" class="heading" id="CPU_bound_vs_IO_bound"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>CPU bound vs IO bound</h4><div class="heading-children"><div class="el-p"><p dir="auto">I/O 작업 시에, context switching 비용 + I/O waiting이 발생하기에, 워크로드에서 어느 작업이 많이 차지하는지를 확인해야 해요.</p></div><div class="el-p"><p dir="auto">만약 I/O waiting 시간이 짧은 워크로드의 경우, 비동기로 처리하면 오히려 불필요한 context switching 비용이 증가할 수 있어요.<br>
+따라서 해당 워크로드가 <strong>CPU-intensive</strong>한지, <strong>I/O-blocking</strong>이 어느 정도 지연되는지를 판단할 수 있어야 해요.</p></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="비동기는 만능일까?" dir="auto" class="heading" id="비동기는_만능일까?"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>비동기는 만능일까?</h4><div class="heading-children"><div class="el-p"><p dir="auto">비동기 처리가 마치 만능 해법처럼 보이지만, 실제로는 트레이드오프가 존재해요.</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">비동기 코드를 작성할 때 <strong>개발 복잡도</strong>가 높아지거나, <strong>디버깅 난이도</strong>가 올라갈 수 있어요.</li>
+<li data-line="1" dir="auto"><strong>스레드</strong>나 <strong>이벤트 루프</strong>를 잘못 관리하면, 의도치 않게 리소스를 잠식하거나 더 큰 병목을 일으키기도 해요.</li>
+<li data-line="2" dir="auto">그리고 <strong>I/O가 매우 빠르게 끝나는 작업</strong>이라면, 비동기 오버헤드(태스크 전환, context switching) 때문에 성능이 오히려 떨어질 수 있어요.</li>
+</ul></div><div class="el-p"><p dir="auto">결국 “비동기”가 항상 더 좋은 해법은 아니고, <strong>업무 로직</strong>과 <strong>실제 I/O 특성</strong>을 고려한 후 선택해야 해요.</p></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="print 외 IO 작업" dir="auto" class="heading" id="print_외_IO_작업"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>print 외 IO 작업</h4><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto">네트워크 I/O (HTTP, 소켓, DB, 메시지 큐 등)</li>
+<li data-line="1" dir="auto">디바이스 I/O (직접 입력 장치, 센서, 시리얼 포트 등)</li>
+<li data-line="2" dir="auto">파일 시스템 메타데이터 접근 (디렉터리 목록, 권한 변경 등)</li>
+<li data-line="3" dir="auto">메모리 매핑 I/O (mmap 등)</li>
+<li data-line="4" dir="auto">스트리밍/파이프 I/O (대용량 미디어, IPC 등)</li>
+<li data-line="5" dir="auto">표준 입력(stdin)</li>
+<li data-line="6" dir="auto">로그(Log) 출력 (파일, 스트림, 원격 전송 등)</li>
+<li data-line="7" dir="auto">클라우드 스토리지 I/O (S3, GCS, Azure Blob 등)</li>
+</ul></div><div class="el-p"><p dir="auto">이처럼 <strong>다양한 I/O 시나리오</strong>를 어떻게 처리하느냐에 따라, 애플리케이션 성능과 구조가 달라질 수 있어요.<br>
+비동기 방식으로 옮겨간다고 해서 무조건 성능이 좋아지진 않으니, <strong>워크로드 특성</strong>을 파악한 뒤에 선택하는 게 중요해요.</p></div><div class="mod-footer mod-ui"></div></div></div></div></div></div></div></div><div class="sidebar-right sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content"><div class="graph-view-wrapper"><div class="sidebar-section-header">Interactive Graph</div><div class="graph-view-placeholder">
+		<div class="graph-view-container">
+			<div class="graph-icon graph-expand" role="button" aria-label="Expand" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+			<canvas id="graph-canvas" class="hide" width="512px" height="512px"></canvas>
+		</div>
+		</div></div><div class="tree-container mod-root nav-folder tree-item outline-tree" data-depth="0"><div class="tree-header"><span class="sidebar-section-header">Table Of Contents</span><button class="clickable-icon collapse-tree-button" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-scroll-area tree-item-children nav-folder-children"><div class="tree-item mod-tree-folder nav-folder mod-collapsible is-collapsed" style="display: none;"></div><div class="tree-item" data-depth="1"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#로그만 찍어봤는데, 성능이 떨어져요."><div class="tree-item-contents heading-link" heading-name="로그만 찍어봤는데, 성능이 떨어져요."><span class="tree-item-title">로그만 찍어봤는데, 성능이 떨어져요.</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="3"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#문제_상황"><div class="tree-item-contents heading-link" heading-name="문제 상황"><span class="tree-item-title">문제 상황</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#결과"><div class="tree-item-contents heading-link" heading-name="결과"><span class="tree-item-title">결과</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#가설_1._파이썬이_너무_느려서_아닐까요?"><div class="tree-item-contents heading-link" heading-name="가설 1. 파이썬이 너무 느려서 아닐까요?"><span class="tree-item-title">가설 1. 파이썬이 너무 느려서 아닐까요?</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#가설2._출력_연산은_다른_연산과_다르게_느린거_아닐까요?"><div class="tree-item-contents heading-link" heading-name="가설2. 출력 연산은 다른 연산과 다르게 느린거 아닐까요?"><span class="tree-item-title">가설2. 출력 연산은 다른 연산과 다르게 느린거 아닐까요?</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#System_call"><div class="tree-item-contents heading-link" heading-name="System call"><span class="tree-item-title">System call</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#Context_Switching"><div class="tree-item-contents heading-link" heading-name="Context Switching"><span class="tree-item-title">Context Switching</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#IO_blocking"><div class="tree-item-contents heading-link" heading-name="IO blocking"><span class="tree-item-title">IO blocking</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#비동기처리"><div class="tree-item-contents heading-link" heading-name="비동기처리"><span class="tree-item-title">비동기처리</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#실제로_적용해볼까요?"><div class="tree-item-contents heading-link" heading-name="실제로 적용해볼까요?"><span class="tree-item-title">실제로 적용해볼까요?</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#실험_세팅"><div class="tree-item-contents heading-link" heading-name="실험 세팅"><span class="tree-item-title">실험 세팅</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#부하테스트"><div class="tree-item-contents heading-link" heading-name="부하테스트"><span class="tree-item-title">부하테스트</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#결과_분석"><div class="tree-item-contents heading-link" heading-name="결과 분석"><span class="tree-item-title">결과 분석</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#비동기_처리에_대한_주절주절"><div class="tree-item-contents heading-link" heading-name="비동기 처리에 대한 주절주절"><span class="tree-item-title">비동기 처리에 대한 주절주절</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#CPU_bound_vs_IO_bound"><div class="tree-item-contents heading-link" heading-name="CPU bound vs IO bound"><span class="tree-item-title">CPU bound vs IO bound</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#비동기는_만능일까?"><div class="tree-item-contents heading-link" heading-name="비동기는 만능일까?"><span class="tree-item-title">비동기는 만능일까?</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="study/cs-study/로그만-찍어봤는데,-성능이-떨어져요..html#print_외_IO_작업"><div class="tree-item-contents heading-link" heading-name="print 외 IO 작업"><span class="tree-item-title">print 외 IO 작업</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div></div></div></div><script defer="">let rs = document.querySelector(".sidebar-right"); rs.classList.add("is-collapsed"); if (window.innerWidth > 768) rs.classList.remove("is-collapsed"); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></body></html>
