@@ -149,9 +149,3 @@ terminate connection 4 handshake
 ### TCP vs UDP
 
 ### flow control vs congestion control
-
-congestion control은 네트워크 자체의 지연을 피하기 위해서
-flow control은 rx의 데이터 처리속도보다 tx의 송신속도를 조절하기 위해서
-
-
-`awnd = min(cwnd, rwnd)`
