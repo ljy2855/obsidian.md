@@ -1,4 +1,4 @@
-
+![[Lec02.pdf]]
 ## Language Model
 
 ### Define
@@ -101,7 +101,7 @@ long tail? -> top-k중 일부만 크고 나머진 구림
 
 ![[Pasted image 20250310173433.png]]
 
-###### addition
+### Addition
 NN 관점에서 생각해보면, 
 
 비슷한 단어들의 집합들은 count가 없어도 vector space로 표현하기에 이런 고전적인 smoothing 과정은 필요 없을 수도 있다!
