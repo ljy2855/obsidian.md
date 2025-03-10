@@ -52,5 +52,62 @@ long tail? -> top-k중 일부만 크고 나머진 구림
 
 
 
+![[Pasted image 20250310171607.png]]
+- 모델이 발전할 수록 perplexity가 떨어진다
 
-#### Intuition
+
+#### Smoothing
+
+##### 왜 필요한데용?
+- 모든 n-grams 조합이 학습데이터에 없을 수 있음(조합이 너무 많기 때문)
+- trainning set에 없으면 확률이 0로 계산되어버리기 때문
+- P(affray | voice doth us) = 0 -> P(test corpus) = 0
+- Perplexity is not defined
+
+**Sparsity in language**
+- 실제로 단어들 빈도 확인해보면 이럼
+- Long tail of infrequent words 
+- Most finite-size corpora will have this problem.
+![[Pasted image 20250310172122.png]]
+
+
+어캐함
+![[Pasted image 20250310172221.png]]
+##### Laplace smoothing
+- 확률에 일정한 알파만큼 더해준다~
+
+![[Pasted image 20250310172437.png]]
+- 기존 frequency
+![[Pasted image 20250310172447.png]]
+- 알파 더하기
+![[Pasted image 20250310172503.png]]
+- 다시 나눠주기~
+##### Linear interpolation
+- 특정 n gram의 확률이 없기에 **n-1, n-2 gram으로부터 가져온다**
+![[Pasted image 20250310172725.png]]
+- 이 때 앞의 가중치(상수)는 linear하게 만든다 
+ 
+**이 상수(하이퍼 파라미터)는 어캐 찾음?**
+
+1. tranning set에서 n gram 확률 구함
+2. 
+
+
+##### Discounting
+- corpus에서 일정 값만큼 count 빼기
+- count가 0인애들은 뺀만큼 배분해주기!
+
+
+![[Pasted image 20250310173433.png]]
+
+###### addition
+NN 관점에서 생각해보면, 
+
+비슷한 단어들의 집합들은 count가 없어도 vector space로 표현하기에 이런 고전적인 smoothing 과정은 필요 없을 수도 있다!
+
+이후 RNN, transformer에서는 모델 아키텍처 개선으로 성능 발전
+#### Dataset
+#### train, valid, test 배분
+- corpus에서 배분
+- 보지 않은 테스트셋을 얼마나 잘 생성하나?
+- 이 trainset에 얼마나 fit한지, not overfit, 
